@@ -1,0 +1,381 @@
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.wixstatic.com%2Fmedia%2F0d3cd2_53f366b864d345b682e78d925ef8b22b~mv2.png%2Fv1%2Ffill%2Fw_980%2Ch_980%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto%2F0d3cd2_53f366b864d345b682e78d925ef8b22b~mv2.png&f=1&nofb=1&ipt=d6f53963ce2c08e44a75a1a7e67c9be08d4bd3f03ce271cbe6f7b91bdbc03bc0');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Card */
+.app-container {
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+}
+
+/* 3. Main card heading */
+h1 {
+  color: #111827;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 42px;
+  font-weight: 700; /* Clean, bold professional weight instead of blocky heavy black */
+  letter-spacing: -0.03em; /* Modern tight tracking */
+}
+
+.peach-heading {
+  color: #e11d48; 
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.items-table th {
+  color: #6b7280;
+  font-weight: 600;
+  padding: 16px;
+  text-align: left;
+  border-bottom: 2px solid #f3f4f6;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.items-table td {
+  padding: 20px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.items-table tr:hover td {
+  background-color: #f9fafb;
+}
+
+
+.action-cell {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.qty-input {
+  width: 60px;
+  padding: 10px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #111827;
+  background-color: #ffffff; 
+  outline: none;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.qty-input:focus {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
+}
+
+.btn-add {
+  background-color: #ffe4e6;
+  color: #e11d48;
+  font-weight: 700;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add:hover {
+  background-color: #fecdd3;
+  transform: translateY(-1px);
+}
+
+
+.cart-box {
+  background-color: #f8fafc;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  margin-top: 30px;
+}
+
+.cart-box h4 {
+  margin: 0 0 20px 0;
+  color: #475569;
+  border-bottom: 2px dashed #cbd5e1;
+  padding-bottom: 16px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.cart-list {
+  list-style: none; /* Removes the ugly bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.cart-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  color: #334155;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.empty-cart {
+  color: #94a3b8;
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+}
+
+/*Action Button */
+.btn-primary {
+  background-color: #e11d48;
+  color: white;
+  border: none;
+  padding: 24px 32px;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 30px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #be123c;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(225, 29, 72, 0.4);
+}
+
+.btn-primary:disabled {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+/* 8. Secondary Button to download pdf */
+.btn-secondary {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 2px solid #e2e8f0;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 16px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.invoice-template {
+  background: white;
+  padding: 40px;
+  color: #333;
+  text-align: left;
+  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.invoice-title {
+  text-align: center;
+  color: #e11d48; 
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.invoice-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.invoice-table-pdf {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.invoice-table-pdf th {
+  background-color: #e11d48; 
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+.invoice-table-pdf td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.invoice-table-pdf .total-row td {
+  font-weight: bold;
+  border-top: 2px solid #999;
+  border-bottom: 2px solid #999;
+}
+
+.invoice-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.footer-left {
+  width: 50%;
+}
+
+.footer-right {
+  width: 40%;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.footer-grand-total {
+  background-color: #e11d48; 
+  color: white;
+}
+
+.grey-bg {
+  background-color: #f9fafb;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  color: #666;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  /* Shrink the main card padding */
+  .app-container {
+    padding: 24px;
+    border-radius: 16px;
+    margin: 16px; 
+  }
+
+  /* Scale down the massive headers and stack the logo */
+  h1 {
+    font-size: 28px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .peach-heading {
+    font-size: 20px;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+  }
+
+  /* Adjust action buttons */
+  .btn-primary {
+    padding: 18px 24px;
+    font-size: 16px;
+  }
+
+ 
+  .invoice-template {
+    padding: 20px;
+  }
+
+  .invoice-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .invoice-meta {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .invoice-meta > div {
+    text-align: center !important;
+  }
+
+  .invoice-footer {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-left, .footer-right {
+    width: 100%;
+  }
+}
