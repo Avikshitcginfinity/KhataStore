@@ -11,23 +11,20 @@ function App() {
   const [invoice, setInvoice] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5081/api/customers')
+    fetch('https://khatastore-dbbnd5cehnh4ehdq.centralindia-01.azurewebsites.net/api/customers')
       .then(res => res.json())
       .then(data => {
-          const newNames = ["Ramesh", "Suresh", "Nitesh"];
-          const updatedCustomers = data.map((c, index) => ({
-              ...c,
-              name: newNames[index] || c.name 
-          }));
-          setCustomers(updatedCustomers);
-      });
+          setCustomers(data);
+      })
+      .catch(err => console.error("Error fetching customers:", err));
   }, []);
 
   const handleNext = () => {
     setPage(2);
-    fetch('http://localhost:5081/api/items')
+    fetch('https://khatastore-dbbnd5cehnh4ehdq.centralindia-01.azurewebsites.net/api/items')
       .then(res => res.json())
-      .then(data => setItems(data));
+      .then(data => setItems(data))
+      .catch(err => console.error("Error fetching items:", err));
   };
 
   const addToCart = (item, qty) => {
@@ -48,15 +45,16 @@ function App() {
   };
 
   const generateBill = () => {
-     fetch('http://localhost:5081/api/invoice', {
-         method: 'POST',
-         headers: {'Content-Type': 'application/json'},
-         body: JSON.stringify({ customerId: selectedCustomer.id, items: cart })
+     fetch('https://khatastore-dbbnd5cehnh4ehdq.centralindia-01.azurewebsites.net/api/invoice', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     body: JSON.stringify({ customerId: selectedCustomer.id, items: cart })
      }).then(res => res.json())
        .then(data => {
-           setInvoice(data);
-           setPage(3);
-       });
+            setInvoice(data);
+            setPage(3);
+       })
+       .catch(err => console.error("Error generating bill:", err));
   };
 
   const downloadPDF = () => {
@@ -106,7 +104,6 @@ function App() {
         <div>
           <h3 className="peach-heading">Add Items for {selectedCustomer?.name}</h3>
           
-          {/* MOBILE FIX: Wrapped the table in a responsive div */}
           <div className="table-responsive">
             <table className="items-table">
               <thead>
@@ -168,11 +165,6 @@ function App() {
                 <div style={{ fontSize: '14px', color: '#555' }}>GSTIN: 22AAAAA0000A1Z5</div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <img 
-                  src="https://chatgpt.com/backend-api/estuary/content?id=file_0000000012608208b1c81489e86ae112&ts=495833&p=fs&cid=1&sig=4d5bdfb52cc6f2484a943aacf81e43245cebccb48d5fbbe900f4927148b22df5&v=0" 
-                  alt="KhataStore Logo" 
-                  style={{ height: '36px', width: 'auto', objectFit: 'contain' }} 
-                />
                 <h1 style={{ margin: 0, color: '#e11d48', fontSize: '28px', letterSpacing: '0px' }}>KhataStore</h1>
               </div>
             </div>
@@ -191,7 +183,6 @@ function App() {
               </div>
             </div>
 
-            {/* MOBILE FIX: Wrapped the invoice table in a responsive div */}
             <div className="table-responsive">
               <table className="invoice-table-pdf">
                 <thead>
